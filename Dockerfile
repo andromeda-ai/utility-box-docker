@@ -29,4 +29,4 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Install AWS CLI
 RUN pip3 install --upgrade awscli
 
-CMD ["bash"]
+CMD ["bash", "-c", "while true; do sleep 3600; done"]
