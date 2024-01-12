@@ -29,4 +29,24 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Install AWS CLI
 RUN pip3 install --upgrade awscli
 
-CMD ["bash", "-c", "while true; do sleep 3600; done"]
+# Install OpenSSH server
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    systemd \
+    dbus \
+    sudo \
+    openssh-server \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable systemd
+RUN systemctl enable ssh
+
+# Expose SSH port
+EXPOSE 22
+
+# Add a script to add an SSH user with a provided public key
+COPY startup_script.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/startup_script.sh
+
+CMD ["/usr/local/bin/startup_script.sh"]
