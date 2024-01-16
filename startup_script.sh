@@ -10,6 +10,7 @@ mkdir /var/run/sshd
 sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/UsePAM no/UsePAM yes/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 
 chmod 600 /etc/ssh/sshd_config /etc/sssd/sssd.conf
 chown root:root /etc/sssd/sssd.conf
