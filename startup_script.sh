@@ -12,7 +12,6 @@ sed -i 's/UsePAM no/UsePAM yes/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 
-chmod 600 /etc/ssh/sshd_config /etc/sssd/sssd.conf
 chown root:root /etc/sssd/sssd.conf
 
 # Log file location
@@ -32,7 +31,7 @@ service ssh start
 # Start SSSD service
 log "Starting SSSD service"
 rm -f /var/run/sssd.pid
-sssd
+sssd -D --logger=files
 
 # Keep the container running
 tail -f /dev/null
