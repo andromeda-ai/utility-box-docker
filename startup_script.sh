@@ -12,16 +12,9 @@ sed -i 's/UsePAM no/UsePAM yes/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 
-chown root:root /etc/sssd/sssd.conf
-
-# Log file location
-LOG_FILE="/var/log/setup.log"
-
 # Function to log messages
 log() {
-  local message="$1"
-  echo "$(date +"%Y-%m-%d %T"): $message"
-  echo "$(date +"%Y-%m-%d %T"): $message" >> "$LOG_FILE"
+  echo "$(date +"%Y-%m-%d %T"): $1"
 }
 
 # Start SSH service
@@ -31,7 +24,4 @@ service ssh start
 # Start SSSD service
 log "Starting SSSD service"
 rm -f /var/run/sssd.pid
-sssd -D --logger=files
-
-# Keep the container running
-tail -f /dev/null
+sssd -i
