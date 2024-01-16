@@ -36,6 +36,13 @@ RUN apt-get update && \
     dbus \
     sudo \
     openssh-server \
+    sssd \
+    sssd-ad \
+    realmd \
+    adcli \
+    sssd-tools \
+    libnss-sss \
+    libpam-sss \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
