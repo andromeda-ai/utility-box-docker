@@ -12,6 +12,10 @@ sed -i 's/UsePAM no/UsePAM yes/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 
+# Edit the PAM common-session file to create home directories
+echo "session optional pam_mkhomedir.so" >> /etc/pam.d/common-session
+
+
 # Start SSH service
 service ssh start
 
