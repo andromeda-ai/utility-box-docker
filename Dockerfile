@@ -32,17 +32,18 @@ RUN pip3 install --upgrade awscli
 # Install OpenSSH server
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    systemd \
-    dbus \
-    sudo \
-    openssh-server \
-    sssd \
-    sssd-ad \
-    realmd \
     adcli \
-    sssd-tools \
+    dbus \
     libnss-sss \
     libpam-sss \
+    openssh-server \
+    realmd \
+    sssd \
+    sssd-ad \
+    sssd-tools \
+    sudo \
+    systemd \
+    zsh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
