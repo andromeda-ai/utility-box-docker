@@ -21,6 +21,7 @@ AuthorizedKeysCommandUser root
 ClientAliveInterval 60
 ClientAliveCountMax 2
 StreamLocalBindUnlink yes
+MaxStartups 50:100:200
 EOL
 
 # Edit the PAM common-session file to create home directories
