@@ -24,9 +24,6 @@ This repository contains a Dockerfile to build a utility box image based on the 
   - **Azure CLI:**
     - Installed using the official script from Microsoft
 
-  - **AWS CLI:**
-    - Installed via Python package manager (pip)
-
 #### Usage:
 
 To build the Docker image, use the following command in the directory containing the Dockerfile:
