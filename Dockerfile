@@ -26,9 +26,6 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
-# Install AWS CLI
-RUN apt install python3-awscli
-
 # Install OpenSSH server
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
