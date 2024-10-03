@@ -52,7 +52,6 @@ RUN pip3 install --no-cache-dir --upgrade pip \
     seaborn \
     jupyter \
     jupyterlab \
-    tensorflow \
     torch \
     torchvision \
     torchaudio \
@@ -77,15 +76,31 @@ RUN pip3 install --no-cache-dir \
     memory_profiler \
     line_profiler
 
-# Setup SSH
-RUN mkdir /var/run/sshd
-RUN echo 'root:root' | chpasswd
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+# Install OpenSSH server
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    adcli \
+    dbus \
+    libnss-sss \
+    libpam-sss \
+    openssh-server \
+    realmd \
+    sssd \
+    sssd-ad \
+    sssd-tools \
+    sudo \
+    systemd \
+    zsh \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable systemd
+RUN systemctl enable ssh
 
 # Expose SSH port
 EXPOSE 22
 
-# Add startup script
+# Add a script to add an SSH user with a provided public key
 COPY startup_script.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/startup_script.sh
 
