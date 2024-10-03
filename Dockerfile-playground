@@ -58,7 +58,6 @@ RUN pip3 install --no-cache-dir --upgrade pip \
     transformers \
     datasets \
     opencv-python-headless \
-    horovod \
     mlflow \
     wandb \
     ray[tune] \
