@@ -2,8 +2,8 @@ name: Build and Push Utiltu Box Docker Image
 on:
   workflow_dispatch:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
 env:
   UTILITY_BOX_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/utility-box-docker
   PLAYGROUND_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/utility-box-playground
